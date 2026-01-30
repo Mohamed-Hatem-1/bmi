@@ -33,7 +33,10 @@ class ResultScreen extends StatelessWidget {
                     children: [
                       Text(
                         bmiData.name,
-                        style: TextStyle(fontSize: 24, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: bmiData.name.length > 12 ? 18 : 24,
+                          color: Colors.white,
+                        ),
                       ),
                       Text(
                         'A ${bmiData.getAge()} years old ${bmiData.genderString}',
