@@ -117,6 +117,7 @@ class _CalculateScreenState extends State<CalculateScreen> {
                       );
                       return;
                     }
+                    // All validations passed, proceed to calculate BMI
                     final bmiData = BmiData(
                       name: nameController.text,
                       birthDate: dateController.text,
