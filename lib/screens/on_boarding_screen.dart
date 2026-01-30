@@ -1,5 +1,6 @@
 import 'package:bmi/core/theme/app_colors.dart';
 import 'package:bmi/screens/calculate_screen.dart';
+import 'package:bmi/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -7,9 +8,10 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Expanded(
             child: Image.asset(
@@ -22,7 +24,10 @@ class OnBoardingScreen extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.primary,
-                borderRadius: BorderRadius.circular(32),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(32),
+                  topRight: Radius.circular(32),
+                ),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(20),
@@ -38,39 +43,30 @@ class OnBoardingScreen extends StatelessWidget {
                         height: 1.5,
                       ),
                     ),
-                    SizedBox(height: 16),
+                    Spacer(),
                     Text(
                       'It takes just 30 seconds - and your health is worth it!',
                       style: TextStyle(fontSize: 16, color: Colors.white70),
                     ),
-                    SizedBox(height: 24),
-                    Divider(color: Colors.white54, thickness: 1),
-                    SizedBox(height: 32),
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return CalculateScreen();
-                              },
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(400, 50),
-                          backgroundColor: AppColors.secondary,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                    Spacer(),
+                    Divider(color: Colors.white54),
+                    Spacer(),
+                    CustomButton(
+                      width: width,
+                      height: height,
+                      txt: 'Get Started',
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return CalculateScreen();
+                            },
                           ),
-                        ),
-                        child: Text(
-                          'Get Started',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ),
+                        );
+                      },
                     ),
+                    Spacer(),
                   ],
                 ),
               ),
