@@ -15,11 +15,27 @@ class BmiData {
 
   double get bmi => weight / ((height / 100) * (height / 100));
 
-  int getAge() {
-    final birthYear = int.tryParse(birthDate.split('-')[0]) ?? 0;
-    final currentYear = DateTime.now().year;
-    return currentYear - birthYear;
+int getAge() {
+  final parts = birthDate.split('/');
+  if (parts.length != 3) return 0;
+
+  final day = int.tryParse(parts[0]) ?? 1;
+  final month = int.tryParse(parts[1]) ?? 1;
+  final year = int.tryParse(parts[2]) ?? 0;
+
+  final birth = DateTime(year, month, day);
+  final today = DateTime.now();
+
+  int age = today.year - birth.year;
+
+  if (today.month < birth.month ||
+      (today.month == birth.month && today.day < birth.day)) {
+    age--;
   }
+
+  return age;
+}
+
 
   String get genderString => gender == 1 ? "Male" : "Female";
 

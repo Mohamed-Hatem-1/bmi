@@ -53,7 +53,7 @@ class _CalculateScreenState extends State<CalculateScreen> {
                 ),
                 const SizedBox(height: 24),
                 Label(text: "Name"),
-                CustomTextField(controller: nameController ),
+                CustomTextField(controller: nameController),
                 const SizedBox(height: 16),
                 Label(text: "Birth Date"),
                 DateTextfield(dateController: dateController),
@@ -97,9 +97,7 @@ class _CalculateScreenState extends State<CalculateScreen> {
                   onPressed: () {
                     if (nameController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please enter your name'),
-                        ),
+                        const SnackBar(content: Text('Please enter your name')),
                       );
                       return;
                     }
@@ -107,6 +105,14 @@ class _CalculateScreenState extends State<CalculateScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Please enter your birth date'),
+                        ),
+                      );
+                      return;
+                    }
+                    if (selectedGender == 0) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please select your gender'),
                         ),
                       );
                       return;
